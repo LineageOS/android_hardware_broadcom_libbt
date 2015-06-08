@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a8ec9b2_a0c80076",
+        "filename": "src/hardware.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-06-08T06:11:00Z",
+      "side": 1,
+      "message": "static char *hw_samsung_bluetooth_type()",
+      "revId": "2770849800b9031c13128dacbf2c0547cd66b0c2",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_e0a048a8",
+        "filename": "src/hardware.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-06-08T06:11:00Z",
+      "side": 1,
+      "message": "Consider making this a constant",
+      "revId": "2770849800b9031c13128dacbf2c0547cd66b0c2",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_00a614c1",
+        "filename": "src/hardware.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-06-08T06:11:00Z",
+      "side": 1,
+      "message": "ALOGE",
+      "revId": "2770849800b9031c13128dacbf2c0547cd66b0c2",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_c0c50c5c",
+        "filename": "src/hardware.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-06-08T06:11:00Z",
+      "side": 1,
+      "message": "char *type",
+      "revId": "2770849800b9031c13128dacbf2c0547cd66b0c2",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_20ab108b",
+        "filename": "src/hardware.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-06-08T06:11:00Z",
+      "side": 1,
+      "message": "Why is this static? It\u0027s being wiped unconditionally right after declaration.",
+      "revId": "2770849800b9031c13128dacbf2c0547cd66b0c2",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_40b01cf5",
+        "filename": "src/hardware.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-06-08T06:11:00Z",
+      "side": 1,
+      "message": "Consider a more natural line break",
+      "revId": "2770849800b9031c13128dacbf2c0547cd66b0c2",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
