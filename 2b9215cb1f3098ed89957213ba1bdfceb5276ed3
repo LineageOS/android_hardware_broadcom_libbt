@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1fa4df85_dc718de2",
+        "filename": "vnd_buildcfg.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 2195
+      },
+      "writtenOn": "2016-08-27T18:22:00Z",
+      "side": 0,
+      "message": "This endif is too below.",
+      "revId": "2b9215cb1f3098ed89957213ba1bdfceb5276ed3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
