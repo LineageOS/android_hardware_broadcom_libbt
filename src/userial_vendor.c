@@ -199,6 +199,17 @@ int userial_vendor_open(tUSERIAL_CFG *p_cfg)
 
     vnd_userial.fd = -1;
 
+#ifdef BLUEDROID_ENABLE_V4L2
+
+    if ((vnd_userial.fd = open(vnd_userial.port_name, W_OK)) == -1)
+    {
+        ALOGE("userial vendor open: unable to open %s", vnd_userial.port_name);
+        return -1;
+    }
+        ALOGE("userial vendor open: open %s %d", vnd_userial.port_name, vnd_userial.fd);
+    return vnd_userial.fd;
+#endif
+
     if (!userial_to_tcio_baud(p_cfg->baud, &baud))
     {
         return -1;
@@ -290,6 +301,7 @@ void userial_vendor_close(void)
     if (vnd_userial.fd == -1)
         return;
 
+#ifndef BLUEDROID_ENABLE_V4L2
 #if (BT_WAKE_VIA_USERIAL_IOCTL==TRUE)
     /* de-assert bt_wake BEFORE closing port */
     ioctl(vnd_userial.fd, USERIAL_IOCTL_BT_WAKE_DEASSERT, NULL);
@@ -298,6 +310,7 @@ void userial_vendor_close(void)
     ALOGI("device fd = %d close", vnd_userial.fd);
     // flush Tx before close to make sure no chars in buffer
     tcflush(vnd_userial.fd, TCIOFLUSH);
+#endif
     if ((result = close(vnd_userial.fd)) < 0)
         ALOGE( "close(fd:%d) FAILED result:%d", vnd_userial.fd, result);
 
