@@ -290,6 +290,7 @@ void userial_vendor_close(void)
     if (vnd_userial.fd == -1)
         return;
 
+#ifndef BLUEDROID_ENABLE_V4L2
 #if (BT_WAKE_VIA_USERIAL_IOCTL==TRUE)
     /* de-assert bt_wake BEFORE closing port */
     ioctl(vnd_userial.fd, USERIAL_IOCTL_BT_WAKE_DEASSERT, NULL);
@@ -298,6 +299,7 @@ void userial_vendor_close(void)
     ALOGI("device fd = %d close", vnd_userial.fd);
     // flush Tx before close to make sure no chars in buffer
     tcflush(vnd_userial.fd, TCIOFLUSH);
+#endif
     if ((result = close(vnd_userial.fd)) < 0)
         ALOGE( "close(fd:%d) FAILED result:%d", vnd_userial.fd, result);
 
