@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a437d4f_a35152da",
+        "filename": "src/hardware.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1297,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2017-01-21T04:57:33Z",
+      "side": 1,
+      "message": "indentation is off",
+      "revId": "1af51434d0a626f6f27dbebdc412c398add79775",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_835e4ee8",
+        "filename": "src/userial_vendor.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2017-01-21T04:57:33Z",
+      "side": 1,
+      "message": "Are you sure none of the parameter setting in this function is needed? Maybe you just don\u0027t want the userial_ioctl_init_bt_wake(vnd_userial.fd) call?\n\nIf for some reason the parameter setting is totally uncalled for, can we #else the rest of the function to avoid unreachable code warnings from the compiler?",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 209,
+        "endChar": 6
+      },
+      "revId": "1af51434d0a626f6f27dbebdc412c398add79775",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_63636ab2",
+        "filename": "src/userial_vendor.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2017-01-21T04:57:33Z",
+      "side": 1,
+      "message": "Same here, are you sure you don\u0027t just want to turn this off instead?",
+      "range": {
+        "startLine": 303,
+        "startChar": 5,
+        "endLine": 303,
+        "endChar": 30
+      },
+      "revId": "1af51434d0a626f6f27dbebdc412c398add79775",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
