@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "9a437d4f_03e7fe13",
+        "filename": "src/userial_vendor.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1187
+      },
+      "writtenOn": "2017-01-21T05:54:14Z",
+      "side": 1,
+      "message": "It\u0027s correct. We work with wrapper for real uart device. It\u0027s /dev/brcm_bt_drv which on open, notify userspace daemon brcm-uim-sysfs(https://github.com/LineageOS/android_hardware_broadcom_fm/tree/cm-14.1/brcm-uim-sysfs)  and it\u0027s load firmware, enabled power and configure whole uart. Same for close().",
+      "parentUuid": "9a437d4f_835e4ee8",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 209,
+        "endChar": 6
+      },
+      "revId": "1af51434d0a626f6f27dbebdc412c398add79775",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a437d4f_63636ab2",
         "filename": "src/userial_vendor.c",
         "patchSetId": 2
@@ -53,6 +77,30 @@
       "writtenOn": "2017-01-21T04:57:33Z",
       "side": 1,
       "message": "Same here, are you sure you don\u0027t just want to turn this off instead?",
+      "range": {
+        "startLine": 303,
+        "startChar": 5,
+        "endLine": 303,
+        "endChar": 30
+      },
+      "revId": "1af51434d0a626f6f27dbebdc412c398add79775",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_c3f0d6cb",
+        "filename": "src/userial_vendor.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1187
+      },
+      "writtenOn": "2017-01-21T05:54:14Z",
+      "side": 1,
+      "message": "Yes, correct too. brcm-uim-sysfs do whole work after calling close on /dev/brcm_bt_drv.",
+      "parentUuid": "9a437d4f_63636ab2",
       "range": {
         "startLine": 303,
         "startChar": 5,
