@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a437d4f_43928f58",
+        "filename": "src/bt_vendor_brcm.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1187
+      },
+      "writtenOn": "2017-01-27T11:43:04Z",
+      "side": 1,
+      "message": "We need it, because hal directly use rfkill path. UIM already handle it.",
+      "revId": "4ee210c91d1c711a67b032a1e48b0d7aa8d40ac7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
