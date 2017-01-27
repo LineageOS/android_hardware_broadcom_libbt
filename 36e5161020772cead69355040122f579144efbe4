@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a437d4f_e0c73911",
+        "filename": "src/userial_vendor.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2017-01-27T05:54:49Z",
+      "side": 1,
+      "message": "For this file, it really seems like you want BT_WAKE_VIA_USERIAL_IOCTL to be false.",
+      "range": {
+        "startLine": 277,
+        "startChar": 0,
+        "endLine": 279,
+        "endChar": 6
+      },
+      "revId": "36e5161020772cead69355040122f579144efbe4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
