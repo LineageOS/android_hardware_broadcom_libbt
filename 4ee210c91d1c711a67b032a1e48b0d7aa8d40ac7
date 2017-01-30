@@ -16,6 +16,29 @@
       "revId": "4ee210c91d1c711a67b032a1e48b0d7aa8d40ac7",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_7fad1b31",
+        "filename": "src/conf.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2017-01-30T15:55:23Z",
+      "side": 1,
+      "message": "Wait a second here... Can\u0027t you guys rename the BtDrvDev item to UartPort in your own configs?",
+      "range": {
+        "startLine": 75,
+        "startChar": 6,
+        "endLine": 75,
+        "endChar": 14
+      },
+      "revId": "4ee210c91d1c711a67b032a1e48b0d7aa8d40ac7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
