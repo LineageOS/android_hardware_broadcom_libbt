@@ -18,8 +18,10 @@ ifeq ($(strip $(USE_BLUETOOTH_BCM4343)),true)
 LOCAL_CFLAGS += -DUSE_BLUETOOTH_BCM4343
 endif
 
+ifneq ($(TARGET_USES_AOSP), true)
 ifeq ($(BOARD_HAVE_BCM_FM), true)
 LOCAL_CFLAGS += -DBLUEDROID_ENABLE_V4L2
+endif
 endif
 
 LOCAL_SRC_FILES := \
