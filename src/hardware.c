@@ -462,7 +462,7 @@ static const char *hw_samsung_bluetooth_type()
     if (nread <= 0) {
         return NULL;
     }
-
+#ifndef DETECT_WISOL_ONLY
     if (strncmp(buf, "murata", 6) == 0)
         return "murata";
 
@@ -474,7 +474,7 @@ static const char *hw_samsung_bluetooth_type()
 
     if (strncmp(buf, "semco", 5) == 0)
         return "semco";
-
+#endif
     if (strncmp(buf, "wisol", 5) == 0)
         return "wisol";
 
