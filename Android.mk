@@ -62,6 +62,9 @@ LOCAL_PROPRIETARY_MODULE := true
 ifeq ($(BOARD_HAVE_SAMSUNG_BLUETOOTH),true)
     LOCAL_CFLAGS += -DSAMSUNG_BLUETOOTH
     LOCAL_C_INCLUDES += hardware/samsung/macloader/include
+ifeq ($(TARGET_BOOTLOADER_BOARD_NAME), universal7420)
+    LOCAL_CFLAGS += -DDETECT_WISOL_ONLY
+endif
 endif
 
 include $(LOCAL_PATH)/vnd_buildcfg.mk
