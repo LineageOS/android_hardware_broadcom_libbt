@@ -28,7 +28,9 @@
 
 #define LOG_TAG "bt_upio"
 
-#include <utils/Log.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <log/log.h>
 #include <fcntl.h>
 #include <errno.h>
 #include <string.h>
