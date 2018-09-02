@@ -67,6 +67,8 @@
 #define BTHWDBG(param, ...) {}
 #endif
 
+#define FW_PREPATCH_IDENTIFIER      "_pre"
+#define FW_PREPATCH_IDENTIFIER_LEN  4
 #define FW_PATCHFILE_EXTENSION      ".hcd"
 #define FW_PATCHFILE_EXTENSION_LEN  4
 #define FW_PATCHFILE_PATH_MAXLEN    248 /* Local_Name length of return of
@@ -527,9 +529,10 @@ static uint8_t hw_config_findpatch(char *p_chip_id_str)
         while ((dp = readdir(dirp)) != NULL)
         {
             /* Check if filename starts with chip-id name */
-            int cmp;
+            int cmp, chip_id_len;
 
-            cmp = hw_strncmp(dp->d_name, p_chip_id_str, strlen(p_chip_id_str));
+            chip_id_len = strlen(p_chip_id_str);
+            cmp = hw_strncmp(dp->d_name, p_chip_id_str, chip_id_len);
             if (cmp == 0)
             {
 #ifdef SAMSUNG_BLUETOOTH
@@ -558,30 +561,39 @@ static uint8_t hw_config_findpatch(char *p_chip_id_str)
                           FW_PATCHFILE_EXTENSION_LEN) \
                      ) == 0))
                 {
-                    ALOGI("Found patchfile: %s/%s", \
-                        fw_patchfile_path, dp->d_name);
 
-                    /* Make sure length does not exceed maximum */
-                    if ((filenamelen + strlen(fw_patchfile_path)) > \
-                         FW_PATCHFILE_PATH_MAXLEN)
+                    /* Make sure it's not a prepatch */
+                    if((filenamelen < chip_id_len + FW_PREPATCH_IDENTIFIER_LEN) ||
+                        (filenamelen >= chip_id_len + FW_PREPATCH_IDENTIFIER_LEN &&
+                        hw_strncmp(&dp->d_name[chip_id_len], \
+                            FW_PREPATCH_IDENTIFIER, \
+                            FW_PREPATCH_IDENTIFIER_LEN) != 0))
                     {
-                        ALOGE("Invalid patchfile name (too long)");
-                    }
-                    else
-                    {
-                        memset(p_chip_id_str, 0, FW_PATCHFILE_PATH_MAXLEN);
-                        /* Found patchfile. Store location and name */
-                        strcpy(p_chip_id_str, fw_patchfile_path);
-                        if (fw_patchfile_path[ \
-                            strlen(fw_patchfile_path)- 1 \
-                            ] != '/')
+                        ALOGI("Found patchfile: %s/%s", \
+                            fw_patchfile_path, dp->d_name);
+
+                        /* Make sure length does not exceed maximum */
+                        if ((filenamelen + strlen(fw_patchfile_path)) > \
+                             FW_PATCHFILE_PATH_MAXLEN)
                         {
-                            strcat(p_chip_id_str, "/");
+                            ALOGE("Invalid patchfile name (too long)");
                         }
-                        strcat(p_chip_id_str, dp->d_name);
-                        retval = TRUE;
+                        else
+                        {
+                            memset(p_chip_id_str, 0, FW_PATCHFILE_PATH_MAXLEN);
+                            /* Found patchfile. Store location and name */
+                            strcpy(p_chip_id_str, fw_patchfile_path);
+                            if (fw_patchfile_path[ \
+                                strlen(fw_patchfile_path)- 1 \
+                                ] != '/')
+                            {
+                                strcat(p_chip_id_str, "/");
+                            }
+                            strcat(p_chip_id_str, dp->d_name);
+                            retval = TRUE;
+                        }
+                        break;
                     }
-                    break;
                 }
             }
         }
