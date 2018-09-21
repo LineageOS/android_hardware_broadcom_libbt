@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8c2ada87_11401642",
+        "filename": "src/hardware.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 18205
+      },
+      "writtenOn": "2018-09-21T10:07:47Z",
+      "side": 1,
+      "message": "This would go out of bounds if the last character of fw_prepatch_name is a slash \u0027/\u0027, but that shouldn\u0027t happen. Do i need to protect for that?",
+      "range": {
+        "startLine": 568,
+        "startChar": 31,
+        "endLine": 568,
+        "endChar": 54
+      },
+      "revId": "ebaf3152bd2804044c8c30382dc4cb73704d4415",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
