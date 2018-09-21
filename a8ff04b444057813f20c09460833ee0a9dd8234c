@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "706b28ed_991860b9",
+        "filename": "src/hardware.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 18205
+      },
+      "writtenOn": "2018-09-21T09:29:04Z",
+      "side": 1,
+      "message": "Can we call this fw_prepatch_fullpath or something?\n\u0027name\u0027 is kindof confusing since it actually includes the absolute path to the file.",
+      "range": {
+        "startLine": 179,
+        "startChar": 12,
+        "endLine": 179,
+        "endChar": 28
+      },
+      "revId": "a8ff04b444057813f20c09460833ee0a9dd8234c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
