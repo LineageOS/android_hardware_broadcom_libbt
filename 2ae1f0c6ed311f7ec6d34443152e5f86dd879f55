@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b78d6620_2b9cba79",
+        "filename": "src/hardware.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1481,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2019-06-17T06:40:24Z",
+      "side": 1,
+      "message": "space",
+      "range": {
+        "startLine": 1481,
+        "startChar": 4,
+        "endLine": 1481,
+        "endChar": 6
+      },
+      "revId": "2ae1f0c6ed311f7ec6d34443152e5f86dd879f55",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
