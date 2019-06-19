@@ -67,6 +67,14 @@
 #define BTHWDBG(param, ...) {}
 #endif
 
+#ifndef BTHW_FW_EXTENDED_CONFIGURATION
+#define BTHW_FW_EXTENDED_CONFIGURATION FALSE
+#endif
+
+#ifndef BTHW_FW_EXTENDED_CONFIGURATION_SCO_CODEC
+#define BTHW_FW_EXTENDED_CONFIGURATION_SCO_CODEC SCO_CODEC_CVSD
+#endif
+
 #define FW_PATCHFILE_EXTENSION      ".hcd"
 #define FW_PATCHFILE_EXTENSION_LEN  4
 #define FW_PATCHFILE_PATH_MAXLEN    248 /* Local_Name length of return of
@@ -274,6 +282,8 @@ static uint8_t sco_bus_wbs_clock_rate = INVALID_SCO_CLOCK_RATE;
 /******************************************************************************
 **  Static functions
 ******************************************************************************/
+static int hw_set_SCO_codec(uint16_t codec);
+static void hw_sco_config_set_params(void);
 static void hw_sco_i2spcm_config(uint16_t codec);
 static void hw_sco_i2spcm_config_from_command(void *p_mem, uint16_t codec);
 
@@ -1016,7 +1026,13 @@ void hw_config_cback(void *p_mem)
             case HW_CFG_SET_BD_ADDR:
                 ALOGI("vendor lib fwcfg completed");
                 bt_vendor_cbacks->dealloc(p_buf);
+
+#if (SCO_CFG_INCLUDED == TRUE && BTHW_FW_EXTENDED_CONFIGURATION == TRUE)
+                hw_sco_config_set_params();
+                hw_set_SCO_codec(BTHW_FW_EXTENDED_CONFIGURATION_SCO_CODEC);
+#else
                 bt_vendor_cbacks->fwcfg_cb(BT_VND_OP_RESULT_SUCCESS);
+#endif
 
                 hw_cfg_cb.state = 0;
 
@@ -1050,7 +1066,13 @@ void hw_config_cback(void *p_mem)
 
                 ALOGI("vendor lib fwcfg completed");
                 bt_vendor_cbacks->dealloc(p_buf);
+
+#if (SCO_CFG_INCLUDED == TRUE && BTHW_FW_EXTENDED_CONFIGURATION == TRUE)
+                hw_sco_config_set_params();
+                hw_set_SCO_codec(BTHW_FW_EXTENDED_CONFIGURATION_SCO_CODEC);
+#else
                 bt_vendor_cbacks->fwcfg_cb(BT_VND_OP_RESULT_SUCCESS);
+#endif
 
                 hw_cfg_cb.state = 0;
 
@@ -1233,6 +1255,10 @@ static void hw_sco_i2spcm_cfg_cback(void *p_mem)
     ALOGI("sco I2S/PCM config result %d [0-Success, 1-Fail]", status);
     if (bt_vendor_cbacks)
     {
+#if (SCO_CFG_INCLUDED == TRUE && BTHW_FW_EXTENDED_CONFIGURATION == TRUE)
+        bt_vendor_cbacks->fwcfg_cb(BT_VND_OP_RESULT_SUCCESS);
+        bt_vendor_cbacks->scocfg_cb(BT_VND_OP_RESULT_SUCCESS);
+#endif
         bt_vendor_cbacks->audio_state_cb(status);
     }
 }
@@ -1428,15 +1454,15 @@ void hw_lpm_set_wake_state(uint8_t wake_assert)
 
 #if (SCO_CFG_INCLUDED == TRUE)
 /*******************************************************************************
-**
-** Function         hw_sco_config
-**
-** Description      Configure SCO related hardware settings
-**
-** Returns          None
-**
-*******************************************************************************/
-void hw_sco_config(void)
+ **
+ ** Function         hw_sco_config_set_params
+ **
+ ** Description      Configure SCO related parameters
+ **
+ ** Returns          None
+ **
+ *******************************************************************************/
+void hw_sco_config_set_params(void)
 {
     if (SCO_INTERFACE_I2S == sco_bus_interface)
     {
@@ -1466,6 +1492,20 @@ void hw_sco_config(void)
         if (sco_bus_wbs_clock_rate < sco_bus_clock_rate)
             sco_bus_wbs_clock_rate = sco_bus_clock_rate;
     }
+}
+
+/*******************************************************************************
+**
+** Function         hw_sco_config
+**
+** Description      Configure SCO related hardware settings
+**
+** Returns          None
+**
+*******************************************************************************/
+void hw_sco_config(void)
+{
+    hw_sco_config_set_params();
 
     /*
      *  To support I2S/PCM port multiplexing signals for sharing Bluetooth audio
@@ -1495,9 +1535,17 @@ static void hw_sco_i2spcm_config_from_command(void *p_mem, uint16_t codec) {
         bt_vendor_cbacks->dealloc(p_evt_buf);
 
     if (command_success)
+    {
         hw_sco_i2spcm_config(codec);
+    }
     else if (bt_vendor_cbacks)
+    {
+#if (SCO_CFG_INCLUDED == TRUE && BTHW_FW_EXTENDED_CONFIGURATION == TRUE)
+        bt_vendor_cbacks->fwcfg_cb(BT_VND_OP_RESULT_SUCCESS);
+        bt_vendor_cbacks->scocfg_cb(BT_VND_OP_RESULT_SUCCESS);
+#endif
         bt_vendor_cbacks->audio_state_cb(BT_VND_OP_RESULT_FAIL);
+    }
 }
 
 
@@ -1560,7 +1608,14 @@ static void hw_sco_i2spcm_config(uint16_t codec)
             return;
     }
 
-    bt_vendor_cbacks->audio_state_cb(BT_VND_OP_RESULT_FAIL);
+    if (bt_vendor_cbacks)
+    {
+#if (SCO_CFG_INCLUDED == TRUE && BTHW_FW_EXTENDED_CONFIGURATION == TRUE)
+        bt_vendor_cbacks->fwcfg_cb(BT_VND_OP_RESULT_SUCCESS);
+        bt_vendor_cbacks->scocfg_cb(BT_VND_OP_RESULT_SUCCESS);
+#endif
+        bt_vendor_cbacks->audio_state_cb(BT_VND_OP_RESULT_FAIL);
+    }
 }
 
 /*******************************************************************************
@@ -1612,11 +1667,12 @@ static int hw_set_SCO_codec(uint16_t codec)
         else
         {
             /* Disable mSBC */
-            *p++ = (SCO_CODEC_PARAM_SIZE - 2); /* set the parameter size */
+            *p++ = SCO_CODEC_PARAM_SIZE; /* set the parameter size */
             UINT8_TO_STREAM(p,0); /* disable */
+            UINT16_TO_STREAM(p, 0);
 
             /* set the totall size of this packet */
-            p_buf->len = HCI_CMD_PREAMBLE_SIZE + SCO_CODEC_PARAM_SIZE - 2;
+            p_buf->len = HCI_CMD_PREAMBLE_SIZE + SCO_CODEC_PARAM_SIZE;
 
             p_set_SCO_codec_cback = hw_set_CVSD_codec_cback;
             if ((codec != SCO_CODEC_CVSD) && (codec != SCO_CODEC_NONE))
@@ -1637,6 +1693,14 @@ static int hw_set_SCO_codec(uint16_t codec)
         ret_val = -1;
     }
 
+#if (SCO_CFG_INCLUDED == TRUE && BTHW_FW_EXTENDED_CONFIGURATION == TRUE)
+    if (ret_val == -1 && bt_vendor_cbacks)
+    {
+        bt_vendor_cbacks->fwcfg_cb(BT_VND_OP_RESULT_SUCCESS);
+        bt_vendor_cbacks->scocfg_cb(BT_VND_OP_RESULT_SUCCESS);
+        bt_vendor_cbacks->audio_state_cb(BT_VND_OP_RESULT_FAIL);
+    }
+#endif
     return ret_val;
 }
 
