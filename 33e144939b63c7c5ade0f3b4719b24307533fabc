@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "688d0300_cb2bdb07",
+        "filename": "src/hardware.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1033,
+      "author": {
+        "id": 23573
+      },
+      "writtenOn": "2019-06-21T23:44:43Z",
+      "side": 1,
+      "message": "If we end the condition here then fwcfg_cb will be called before audio codec configuration finish. The entire fix is based on that audio codec configuration must be finished before fwcfg_cb called.",
+      "parentUuid": "2ba85783_e9f80a9a",
+      "revId": "33e144939b63c7c5ade0f3b4719b24307533fabc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "08619253_6ba8b81c",
         "filename": "src/hardware.c",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "dcc18375_f3d0a02b",
+        "filename": "src/hardware.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1258,
+      "author": {
+        "id": 23573
+      },
+      "writtenOn": "2019-06-21T23:44:43Z",
+      "side": 1,
+      "message": "Nice catch! We can remove it. In fact, this does not change anything, but without this check code will look a bit cleaner.",
+      "parentUuid": "08619253_6ba8b81c",
+      "revId": "33e144939b63c7c5ade0f3b4719b24307533fabc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fb673915_56edc657",
         "filename": "src/hardware.c",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2019-06-21T22:21:07Z",
       "side": 1,
       "message": "Why is it needed to split the hw_sco_config() into two separate functions?",
+      "revId": "33e144939b63c7c5ade0f3b4719b24307533fabc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5113668_d0d40b17",
+        "filename": "src/hardware.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1506,
+      "author": {
+        "id": 23573
+      },
+      "writtenOn": "2019-06-21T23:44:43Z",
+      "side": 1,
+      "message": "We must configure SCO related parameters (bt_sco_i2spcm_param , sco_bus_clock_rate , sco_bus_wbs_clock_rate) because hw_set_SCO_codec() will call the hw_sco_i2spcm_config() in the end of the whole chain and hw_sco_i2spcm_config() uses these parameters. Please note that  hw_sco_config() is the only method who configures the SCO related parameters but it is not used when hw_set_SCO_codec() called. Thats why we need to split hw_sco_config() and call the hw_sco_config_set_params() right before the hw_set_SCO_codec(BTHW_FW_EXTENDED_CONFIGURATION_SCO_CODEC);",
+      "parentUuid": "fb673915_56edc657",
       "revId": "33e144939b63c7c5ade0f3b4719b24307533fabc",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
