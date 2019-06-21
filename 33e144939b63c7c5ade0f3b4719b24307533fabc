@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ba85783_e9f80a9a",
+        "filename": "src/hardware.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1033,
+      "author": {
+        "id": 21793
+      },
+      "writtenOn": "2019-06-21T22:21:07Z",
+      "side": 1,
+      "message": "Maybe end the condition here and remove the rest of the fwcfg_cback from the i2s/pcm config related methods?",
+      "revId": "33e144939b63c7c5ade0f3b4719b24307533fabc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08619253_6ba8b81c",
+        "filename": "src/hardware.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1258,
+      "author": {
+        "id": 21793
+      },
+      "writtenOn": "2019-06-21T22:21:07Z",
+      "side": 1,
+      "message": "No need to check for SCO_CFG_INCLUDED here. The same goes for every other method which already falls into SCO_CFG_INCLUDE\u003d\u003dTRUE condition.",
+      "revId": "33e144939b63c7c5ade0f3b4719b24307533fabc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb673915_56edc657",
+        "filename": "src/hardware.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1506,
+      "author": {
+        "id": 21793
+      },
+      "writtenOn": "2019-06-21T22:21:07Z",
+      "side": 1,
+      "message": "Why is it needed to split the hw_sco_config() into two separate functions?",
+      "revId": "33e144939b63c7c5ade0f3b4719b24307533fabc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
