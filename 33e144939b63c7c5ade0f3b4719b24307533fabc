@@ -104,6 +104,24 @@
       "revId": "33e144939b63c7c5ade0f3b4719b24307533fabc",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72120b7e_c798c702",
+        "filename": "src/hardware.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1506,
+      "author": {
+        "id": 21793
+      },
+      "writtenOn": "2019-06-22T01:13:04Z",
+      "side": 1,
+      "message": "I don\u0027t think it is needed to set the i2s/pcm parameters in a seperate function. If there is an issue with something inside the hw_sco_config() method which prevents this to work, we could put it inside a condition, and continue the configuration.",
+      "parentUuid": "e5113668_d0d40b17",
+      "revId": "33e144939b63c7c5ade0f3b4719b24307533fabc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
