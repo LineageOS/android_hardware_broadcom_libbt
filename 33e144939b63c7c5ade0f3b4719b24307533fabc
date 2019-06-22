@@ -122,6 +122,24 @@
       "revId": "33e144939b63c7c5ade0f3b4719b24307533fabc",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec9e53f5_7615d7c4",
+        "filename": "src/hardware.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1506,
+      "author": {
+        "id": 23573
+      },
+      "writtenOn": "2019-06-22T03:20:36Z",
+      "side": 1,
+      "message": "Seems i understood your proposal. Here is what we can do:\n1. Remove hw_sco_config_set_params() function\n2. Call hw_set_SCO_codec() inside of hw_sco_config()\n3. Replace calls of the hw_set_SCO_codec() with hw_sco_config()\n\nIn such case we don\u0027t need to split hw_sco_config(). We also can remove changes inside of hw_set_SCO_codec().",
+      "parentUuid": "72120b7e_c798c702",
+      "revId": "33e144939b63c7c5ade0f3b4719b24307533fabc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
