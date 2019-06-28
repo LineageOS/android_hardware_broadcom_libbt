@@ -16,6 +16,24 @@
       "revId": "f12f24691f836315f6b5840f7373a6a5faec1470",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "087ffa2e_d508fdeb",
+        "filename": "src/hardware.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 23573
+      },
+      "writtenOn": "2019-06-28T15:24:59Z",
+      "side": 1,
+      "message": "Default value of the SCO_CFG_INCLUDED doesn\u0027t matter. SCO_CFG_INCLUDED is used here only because implementation of these two methods is wrapped with #if (SCO_CFG_INCLUDED \u003d\u003d TRUE)\n\nAlso BTHW_FW_EXTENDED_CONFIGURATION should be omitted here because:\n* BTHW_FW_EXTENDED_CONFIGURATION doesn\u0027t related to declaration of hw_sco_config() and hw_set_SCO_codec(). We should be able to use these functions without BTHW_FW_EXTENDED_CONFIGURATION if necessary.\n* It is just a forward declaration which does not change anything in logic, performance or compilation time even if BTHW_FW_EXTENDED_CONFIGURATION is not set to TRUE.\n* Code looks cleaner without BTHW_FW_EXTENDED_CONFIGURATION",
+      "parentUuid": "7b1eee7c_da9bef20",
+      "revId": "f12f24691f836315f6b5840f7373a6a5faec1470",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
