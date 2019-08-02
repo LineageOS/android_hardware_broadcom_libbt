@@ -81,6 +81,30 @@
       "revId": "f12f24691f836315f6b5840f7373a6a5faec1470",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d90b6c7_cb39cc93",
+        "filename": "src/hardware.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1675,
+      "author": {
+        "id": 23573
+      },
+      "writtenOn": "2019-08-02T16:11:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70d4c64a_1567376a",
+      "range": {
+        "startLine": 1670,
+        "startChar": 0,
+        "endLine": 1675,
+        "endChar": 70
+      },
+      "revId": "f12f24691f836315f6b5840f7373a6a5faec1470",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
