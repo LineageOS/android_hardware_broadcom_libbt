@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74ae0c85_80682c77",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 13028
+      },
+      "writtenOn": "2024-06-14T19:54:26Z",
+      "side": 1,
+      "message": "too long lines\nalso re: title: if it contains \"and\", usually consider making it two changes",
+      "revId": "06a369b47e61c35b13488392297231e0c8025ac4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
