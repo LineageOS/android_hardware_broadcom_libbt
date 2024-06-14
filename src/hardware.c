@@ -253,7 +253,7 @@ static uint8_t bt_sco_i2spcm_param[SCO_I2SPCM_PARAM_SIZE] =
 static const fw_settlement_entry_t fw_settlement_table[] = {
     {"BCM43241", 200},
     {"BCM43341", 100},
-    {(const char *) NULL, 100}  // Giving the generic fw settlement delay setting.
+    {(const char *) NULL, 300}  // Giving the generic fw settlement delay setting.
 };
 
 
@@ -798,6 +798,12 @@ void hw_config_cback(void *p_mem)
                     strncpy(hw_cfg_cb.local_chip_name, p_name, \
                             LOCAL_NAME_BUFFER_LEN-1);
                 }
+                else if ((p_name = strstr(p_tmp, "SYN")) != NULL)
+                {
+                    strncpy(hw_cfg_cb.local_chip_name, p_name, \
+                            LOCAL_NAME_BUFFER_LEN-1);
+                }
+
 #ifdef USE_BLUETOOTH_BCM4343
                 else if ((p_name = strstr(p_tmp, "4343")) != NULL)
                 {
@@ -899,8 +905,8 @@ void hw_config_cback(void *p_mem)
                  * sets the new starting baud rate at 115200.
                  * So, we need update host's baud rate accordingly.
                  */
-                ALOGI("bt vendor lib: set UART baud 115200");
-                userial_vendor_set_baud(USERIAL_BAUD_115200);
+                // ALOGI("bt vendor lib: set UART baud 115200");
+                // userial_vendor_set_baud(USERIAL_BAUD_115200);
 
                 /* Next, we would like to boost baud rate up again
                  * to desired working speed.
@@ -913,6 +919,11 @@ void hw_config_cback(void *p_mem)
                 delay = look_up_fw_settlement_delay();
                 ALOGI("Setting fw settlement delay to %d ", delay);
                 ms_delay(delay);
+
+                /* Do set baudrate change after fw settlement in case some platform UART would
+                get stuck if changing baudrate while module RTS is high */
+                ALOGI("bt vendor lib: set UART baud 115200");
+                userial_vendor_set_baud(USERIAL_BAUD_115200);
 
                 p_buf->len = HCI_CMD_PREAMBLE_SIZE;
                 UINT16_TO_STREAM(p, HCI_RESET);
