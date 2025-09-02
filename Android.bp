@@ -11,9 +11,11 @@ cc_genrule {
     tool_files: [
         "gen-buildcfg.sh",
     ],
-    srcs: select(soong_config_variable("brcm_libbt", "device"), {
-        any @ device: ["include/vnd_" + device + ".txt"],
-        default: ["include/vnd_generic.txt"],
+    srcs: select((soong_config_variable("brcm_libbt", "custom_bt_config"),
+                  soong_config_variable("brcm_libbt", "device")), {
+        (any @ custom_bt_config, default): [custom_bt_config],
+        (default, any @ device): ["include/vnd_" + device + ".txt"],
+        (default, default): ["include/vnd_generic.txt"],
     }),
     out: [
         "vnd_buildcfg.h"
