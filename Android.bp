@@ -26,20 +26,25 @@ cc_genrule {
 cc_library_shared {
     name: "libbt-vendor",
     cflags: [
-        "-DHAS_NO_BDROID_BUILDCFG",
         "-Wall",
         "-Werror",
         "-Wno-switch",
         "-Wno-unused-function",
         "-Wno-unused-parameter",
         "-Wno-unused-variable",
-    ],
+    ] + select(soong_config_variable("brcm_libbt", "bdroid_buildcfg_include_dir"),{
+        any: ["-DHAS_BDROID_BUILDCFG"],
+        default: ["-DHAS_NO_BDROID_BUILDCFG"],
+    }),
     include_dirs: [
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/device/include",
         "packages/modules/Bluetooth/system/hci/include",
         "packages/modules/Bluetooth/system/include",
-    ],
+    ] + select(soong_config_variable("brcm_libbt", "bdroid_buildcfg_include_dir"),{
+        any @ include_dir: [include_dir],
+        default: [],
+    }),
     local_include_dirs: ["include"],
     generated_headers: ["gen-libbt-vnd_buildcfg.h"],
     header_libs: ["libutils_headers"],
