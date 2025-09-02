@@ -1,0 +1,43 @@
+package {
+    // See: http://go/android-license-faq
+    default_applicable_licenses: [
+        "Android-Apache-2.0",
+    ],
+}
+
+cc_library_shared {
+    name: "libbt-vendor",
+    cflags: [
+        "-DHAS_NO_BDROID_BUILDCFG",
+        "-Wall",
+        "-Werror",
+        "-Wno-switch",
+        "-Wno-unused-function",
+        "-Wno-unused-parameter",
+        "-Wno-unused-variable",
+    ],
+    include_dirs: [
+        "packages/modules/Bluetooth/system",
+        "packages/modules/Bluetooth/system/device/include",
+        "packages/modules/Bluetooth/system/hci/include",
+        "packages/modules/Bluetooth/system/include",
+    ],
+    local_include_dirs: ["include"],
+    generated_sources: ["out/target/product/meow/gen/SHARED_LIBRARIES/libbt-vendor_intermediates/vnd_buildcfg.h"],
+    header_libs: ["libutils_headers"],
+
+    owner: "broadcom",
+
+    proprietary: true,
+    shared_libs: [
+        "libcutils",
+        "liblog",
+    ],
+    srcs: [
+        "src/bt_vendor_brcm.c",
+        "src/conf.c",
+        "src/hardware.c",
+        "src/upio.c",
+        "src/userial_vendor.c",
+    ],
+}
