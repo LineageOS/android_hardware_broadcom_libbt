@@ -5,6 +5,18 @@ package {
     ],
 }
 
+cc_genrule {
+    name: "gen-libbt-vnd_buildcfg.h",
+    proprietary: true,
+    tool_files: ["gen-buildcfg.sh"],
+    srcs: select(soong_config_variable("brcm_libbt", "device"), {
+        any @ device: ["include/vnd_" + device + ".txt"],
+        default: ["include/vnd_generic.txt"],
+    }),
+    out: ["vnd_buildcfg.h"],
+    cmd: "$(location gen-buildcfg.sh) $(in) $(out)",
+}
+
 cc_library_shared {
     name: "libbt-vendor",
     cflags: [
@@ -23,7 +35,7 @@ cc_library_shared {
         "packages/modules/Bluetooth/system/include",
     ],
     local_include_dirs: ["include"],
-    generated_sources: ["out/target/product/meow/gen/SHARED_LIBRARIES/libbt-vendor_intermediates/vnd_buildcfg.h"],
+    generated_headers: ["gen-libbt-vnd_buildcfg.h"],
     header_libs: ["libutils_headers"],
 
     owner: "broadcom",
