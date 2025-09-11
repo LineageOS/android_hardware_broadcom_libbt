@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dad7418f_2274c83a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2025-09-11T18:22:38Z",
+      "side": 1,
+      "message": "waiting on Tegra verification and exynos9820 to pick it",
+      "revId": "39a0c50ccf1e31ab85730027a3ec9c7aebd304c5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
