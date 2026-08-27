@@ -34,6 +34,24 @@
       "parentUuid": "62179c54_5b80a8d2",
       "revId": "8f7d32152596e4b09170d273864510539fa0e11c",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d47069ce_01416d70",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2026-08-27T15:54:07Z",
+      "side": 1,
+      "message": "Effectively, yes, the two below UART could be dropped for g12a but with g12b ready now it\u0027s needed.",
+      "parentUuid": "9b043796_68150c11",
+      "revId": "8f7d32152596e4b09170d273864510539fa0e11c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
