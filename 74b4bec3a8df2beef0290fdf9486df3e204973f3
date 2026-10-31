@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18567062_b6d1393c",
+        "filename": "firmware/bluetooth.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-10-31T18:26:50Z",
+      "side": 1,
+      "message": "needs an update",
+      "revId": "74b4bec3a8df2beef0290fdf9486df3e204973f3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
